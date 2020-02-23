@@ -75,16 +75,18 @@ const playView = () => {
             console.log(counter);
         };
 
+
+
         phraseLetterSpan.textContent = phraseLetterVisible ? phraseLetter : '*';
         phraseLettersContainer.appendChild(phraseLetterSpan);
-        if (counter === phraseLetters.length) {
-            stateUpdate({
-                activeView: 'end'
-            });
-            return
-        }
-    });
 
+    });
+    if (counter === phraseLetters.length) {
+        stateUpdate({
+            activeView: 'end'
+        });
+        return
+    }
 
     const lettersContainer = document.createElement('div');
     for (let i = 0; i < alphabet.length; i++) {
