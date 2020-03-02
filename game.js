@@ -16,7 +16,7 @@ function stateUpdate(newGameState) {
 
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-const phrases = ['test', 'warsawjs'];
+const phrases = ['test', 'warsawjs', 'paulina'];
 
 
 
@@ -29,20 +29,19 @@ function randomPhrase() {
 
 const welcomeView = () => {
     const header = document.createElement('h1');
+    header.classList.add('welcome_view__header', 'header');
     gameContent.appendChild(header);
     header.textContent = 'Welcome to Hangman!';
 
-    const nameInputLabel = document.createElement('div');
-    gameContent.appendChild(nameInputLabel);
-    nameInputLabel.textContent = 'Enter your name!'
-
     const nameInput = document.createElement('input');
+    nameInput.placeholder='Enter your name!';
+    nameInput.classList.add('welcome_view__name_input');
     gameContent.appendChild(nameInput);
 
     const playButton = document.createElement('button');
     gameContent.appendChild(playButton);
     playButton.classList.add('button');
-    playButton.textContent = 'PLAY GAME';
+    playButton.textContent = 'PLAY GAME!';
 
     playButton.addEventListener('click', () => {
         stateUpdate({
@@ -59,11 +58,12 @@ const welcomeView = () => {
 const playView = () => {
     let counter = 0;
     const hello = document.createElement('h1');
+    hello.classList.add('play_view__header','header')
     gameContent.appendChild(hello);
     hello.textContent = `Hi, ${gameState.name}!`;
 
     const phraseLettersContainer = document.createElement('div');
-    phraseLettersContainer.classList.add('phrase_container');
+    phraseLettersContainer.classList.add('play_view__phrase');
     gameContent.appendChild(phraseLettersContainer);
     const phraseLetters = gameState.secretPhrase.split('');
     phraseLetters.forEach(phraseLetter => {
@@ -89,6 +89,8 @@ const playView = () => {
     }
 
     const lettersContainer = document.createElement('div');
+    lettersContainer.classList.add('play_view__letters');
+    console.log(lettersContainer.clientWidth);
     for (let i = 0; i < alphabet.length; i++) {
         const letter = alphabet[i];
         const letterButton = document.createElement('button');
@@ -120,11 +122,12 @@ const playView = () => {
 
 const endView = () => {
     const hello = document.createElement('h1');
+    hello.classList.add('end_view__header','header')
     gameContent.appendChild(hello);
     hello.textContent = 'End game';
     const playAgainButton = document.createElement('button');
     gameContent.appendChild(playAgainButton);
-    playAgainButton.textContent = 'Play again!';
+    playAgainButton.textContent = 'PLAY AGAIN!';
     playAgainButton.classList.add('button');
     playAgainButton.addEventListener('click', () => {
         stateUpdate({
